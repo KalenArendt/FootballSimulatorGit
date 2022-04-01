@@ -13,3 +13,5 @@ How to play the game:
 3. Launch FootballSimulator.exe application;
 4. The game starts. You are controlling the red (left-side team)
 5. Use the formation buttons on the left/right side to select your defensive and offensive formations.
+
+The game code is available in this repository at FootballSimulatorGit/FootballSimulator/Assets/Scripts/
