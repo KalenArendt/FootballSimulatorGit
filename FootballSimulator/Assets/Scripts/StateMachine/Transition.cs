@@ -1,20 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Transition<T>
+﻿public class Transition<T>
 {
-    public delegate bool condition();
-    public condition Tcondition;
-    public bool boolType;
-    public State<T> nextState;
+   public delegate bool condition ();
+   public condition Tcondition;
+   public bool boolType;
+   public State<T> nextState;
 
-    public Transition(condition _condition, bool isTrue, State<T> _nextState)
-    {
-        Tcondition = _condition;
+   public Transition (condition _condition, bool isTrue, State<T> _nextState)
+   {
+      Tcondition = _condition;
 
-        boolType = isTrue;
+      boolType = isTrue;
 
-        nextState = _nextState;
-    }
+      nextState = _nextState;
+   }
 }

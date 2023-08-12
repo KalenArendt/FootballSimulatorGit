@@ -1,54 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
 using UnityEngine;
 
 
 // Calculates how many opponents are nearby based on a circle collider.
 public class OpponentsNearby : MonoBehaviour
 {
+   private CircleCollider2D PlayerRange;
+   public List<Collider2D> collidersList = new List<Collider2D>();
+   private int opponentsNearby;
 
-    CircleCollider2D PlayerRange;
-    public List<Collider2D> collidersList = new List<Collider2D>();
+   // Start is called before the first frame update
+   private void Start ()
+   {
+      PlayerRange = GetComponent<CircleCollider2D>();
 
-    int opponentsNearby;
+      opponentsNearby = 0;
+   }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        PlayerRange = GetComponent<CircleCollider2D>();
+   public void Update ()
+   {
+      opponentsNearby = collidersList.Count;
+   }
 
-        opponentsNearby = 0;
-    }
+   private void OnTriggerEnter2D (Collider2D collision)
+   {
+      if (collision.gameObject.layer == 11 && collision.gameObject.transform.parent != transform.parent.parent)
+      {
+         if (!collidersList.Contains(collision))
+         {
+            collidersList.Add(collision);
+         }
+      }
+   }
 
-    public void Update()
-    {
-        opponentsNearby = collidersList.Count;
-    }
+   private void OnTriggerExit2D (Collider2D collision)
+   {
+      if (collision.gameObject.layer == 11 && collision.gameObject.transform.parent != transform.parent)
+      {
+         if (collidersList.Contains(collision))
+         {
+            collidersList.Remove(collision);
+         }
+      }
+   }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.layer == 11 && collision.gameObject.transform.parent != this.transform.parent.parent)
-        {
-            if(!collidersList.Contains(collision))
-            {
-                collidersList.Add(collision);
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer == 11 && collision.gameObject.transform.parent != this.transform.parent)
-        {
-            if (collidersList.Contains(collision))
-            {
-                collidersList.Remove(collision);
-            }
-        }
-    }
-
-    public int GetOpponnentsNearby()
-    {
-        return opponentsNearby;
-    }
+   public int GetOpponnentsNearby ()
+   {
+      return opponentsNearby;
+   }
 }

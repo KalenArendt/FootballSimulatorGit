@@ -1,48 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 
-    public static GameManager i;
+   public static GameManager i;
 
-    // Create a singleton
+   // Create a singleton
 
-    //void Awake()
-    //{
-    //    if (!i)
-    //    {
-    //        i = this;
-    //        DontDestroyOnLoad(gameObject);
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+   //void Awake()
+   //{
+   //    if (!i)
+   //    {
+   //        i = this;
+   //        DontDestroyOnLoad(gameObject);
+   //    }
+   //    else
+   //    {
+   //        Destroy(gameObject);
+   //    }
+   //}
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   // Start is called before the first frame update
+   private void Start ()
+   {
 
-    public void QuitGame()
-    {
-        // save any game data here
+   }
+
+   public void QuitGame ()
+   {
+      // save any game data here
 #if UNITY_EDITOR
-        // Application.Quit() does not work in the editor so
-        // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
-        UnityEditor.EditorApplication.isPlaying = false;
+      // Application.Quit() does not work in the editor so
+      // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+      UnityEditor.EditorApplication.isPlaying = false;
 #else
          Application.Quit();
 #endif
-    }
+   }
 
-    public void GoToMatch()
-    {
-        SceneManager.LoadScene(0);
-    }
+   public void GoToMatch ()
+   {
+      SceneManager.LoadScene(0);
+   }
 }
